@@ -1,0 +1,97 @@
+openapi: '3.0.2'
+info:
+  title: Onboarding API 
+  version: '1.0'
+  description: STD22049
+servers:
+  - url: https://STD22049.com
+paths:
+  /student:
+    get:
+      description: get the list of the students
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - id
+                    - name
+                    - birthDate
+                    - stdRef
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    name:
+                      type: string
+                      example: 'Rakoto'
+                    birthDate:
+                      type: string
+                      format: date-time
+                      example: '2023-02-25 12:00:00'
+                    stdRef:
+                      type: string
+                      example: 'STD22011'
+        '500':
+          description: invalid server error
+    post:
+      requestBody: 
+        content: 
+          application/json: 
+            schema: 
+              required: 
+                - id
+                - name
+                - birthDate
+                - stdRef
+              properties: 
+                id:
+                  type: integer
+                  example: 1
+                name:
+                  type: string
+                  example: 'Rakoto'
+                birthDate:
+                  type: string
+                  format: date-time
+                  example: '2023-02-25 12:00:00'
+                stdRef:
+                  type: string
+                  example: 'STD22011'
+      responses: 
+        '201':
+          description: added succesfully
+          content: 
+            application/json: 
+              schema: 
+                type: array
+                items:
+                  type: object
+                  required:
+                    - id
+                    - name
+                    - birthDate
+                    - stdRef
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    name:
+                      type: string
+                      example: 'Rakoto'
+                    birthDate:
+                      type: string
+                      format: date-time
+                      example: '2023-02-25 12:00:00'
+                    stdRef:
+                      type: string
+                      example: 'STD22011'
+        '500':
+          description: invalid server error
+
+  
