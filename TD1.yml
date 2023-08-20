@@ -24,7 +24,8 @@ paths:
             application/json:
               schema:
                 type: array
-                $ref: '#/components/schemas/Students'
+                items:
+                  $ref: '#/components/schemas/Students'
         '500':
           description: invalid server error
     post:
@@ -110,6 +111,38 @@ paths:
           description: Student not found
         '500': 
           description: server error
+  /teachers:
+    get:
+      tags:
+        - Teacher
+      summary: Display teacher
+      description: get the list of all teachers
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Teachers'
+        '500':
+          description: invalid server error
+    post:
+      tags:
+        - Teacher
+      summary: Post a teacher
+      description: Add new teacher with his attributes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Teachers'
+      responses:
+        '200':
+          description: updated succesfully
+        '500':
+          description: server error
 components:
   schemas:
     Students:
@@ -158,20 +191,21 @@ components:
           
     Courses:
       type: array
-      properties:
-        courses:
-          type: string
-          enum:
-            - 'PROG1'
-            - 'WEB1'
-            - 'SYS1'
-            - 'MGT1'
-            - 'DONNEE1'
-            - 'API'
-            - 'PROG2'
-            - 'WEB2'
-            - 'SYS2'
-          example: ['PROG2','WEB1','DONNEE1']
+      items:
+        type: string
+      example: ['PROG2','WEB1','DONNEE1']
+      enum:
+              - 'PROG1'
+              - 'WEB1'
+              - 'SYS1'
+              - 'MGT1'
+              - 'DONNEE1'
+              - 'API'
+              - 'PROG2'
+              - 'WEB2'
+              - 'SYS2'
+            
+            
 
           
 
