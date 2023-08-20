@@ -5,9 +5,15 @@ info:
   description: STD22049
 servers:
   - url: https://STD22049.com
+tags:
+  - name: Student
+    description: Everything about student
 paths:
   /student:
     get:
+      tags:
+        - Student
+      summary: Display students
       description: get the list of the students
       responses:
         '200':
@@ -40,6 +46,9 @@ paths:
         '500':
           description: invalid server error
     post:
+      tags:
+        - Student
+      summary: add new student
       requestBody: 
         content: 
           application/json: 
