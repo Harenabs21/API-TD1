@@ -8,6 +8,8 @@ servers:
 tags:
   - name: Student
     description: Everything about student
+  - name: Teacher
+    description: Everything about teacher and the courses that they're teaching
 paths:
   /student:
     get:
@@ -17,32 +19,12 @@ paths:
       description: get the list of the students
       responses:
         '200':
-          description: OK
+          description: successful operation
           content:
             application/json:
               schema:
                 type: array
-                items:
-                  type: object
-                  required:
-                    - id
-                    - name
-                    - birthDate
-                    - stdRef
-                  properties:
-                    id:
-                      type: integer
-                      example: 1
-                    name:
-                      type: string
-                      example: 'Rakoto'
-                    birthDate:
-                      type: string
-                      format: date-time
-                      example: '2023-02-25 12:00:00'
-                    stdRef:
-                      type: string
-                      example: 'STD22011'
+                $ref: '#/components/schemas/Students'
         '500':
           description: invalid server error
     post:
@@ -53,25 +35,7 @@ paths:
         content: 
           application/json: 
             schema: 
-              required: 
-                - id
-                - name
-                - birthDate
-                - stdRef
-              properties: 
-                id:
-                  type: integer
-                  example: 1
-                name:
-                  type: string
-                  example: 'Rakoto'
-                birthDate:
-                  type: string
-                  format: date-time
-                  example: '2023-02-25 12:00:00'
-                stdRef:
-                  type: string
-                  example: 'STD22011'
+              $ref: '#/components/schemas/Students'
       responses: 
         '201':
           description: added succesfully
@@ -79,28 +43,26 @@ paths:
             application/json: 
               schema: 
                 type: array
-                items:
-                  type: object
-                  required:
-                    - id
-                    - name
-                    - birthDate
-                    - stdRef
-                  properties:
-                    id:
-                      type: integer
-                      example: 1
-                    name:
-                      type: string
-                      example: 'Rakoto'
-                    birthDate:
-                      type: string
-                      format: date-time
-                      example: '2023-02-25 12:00:00'
-                    stdRef:
-                      type: string
-                      example: 'STD22011'
+                $ref: '#/components/schemas/Students'
         '500':
           description: invalid server error
+components:
+  schemas:
+    Students:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: 'Rakoto'
+        birthDate:
+          type: string
+          format: date-time
+          example: '2023-02-25 12:00:00'
+        stdRef:
+          type: string
+          example: 'STD22011'
 
   
