@@ -53,7 +53,7 @@ paths:
         - Student
       parameters:
         - name: id
-          in: query
+          in: path
           description: specified id
           required: true
           schema:
@@ -75,7 +75,7 @@ paths:
         - Student
       parameters:
         - name: id
-          in: query
+          in: path
           description: specified id
           required: true
           schema:
@@ -97,7 +97,7 @@ paths:
         - Student
       parameters:
         - name: id
-          in: query
+          in: path
           description: specified id
           required: true
           schema:
