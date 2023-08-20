@@ -46,6 +46,70 @@ paths:
                 $ref: '#/components/schemas/Students'
         '500':
           description: invalid server error
+  /student/{id}:
+    get:
+      tags:
+        - Student
+      parameters:
+        - name: id
+          in: query
+          description: specified id
+          required: true
+          schema:
+            type: integer
+      summary: Display student by id
+      description: get one student using his id
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                $ref: '#/components/schemas/Students'
+        '500':
+          description: invalid server error
+    put:
+      tags:
+        - Student
+      parameters:
+        - name: id
+          in: query
+          description: specified id
+          required: true
+          schema:
+            type: integer
+      summary: Update a student
+      description: Update the stdRef and the name
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatedStudent'
+      responses:
+        '200':
+          description: updated succesfully
+        '500':
+          description: server error
+    delete:
+      tags:
+        - Student
+      parameters:
+        - name: id
+          in: query
+          description: specified id
+          required: true
+          schema:
+            type: integer
+      summary: Delete a student
+      description: Delete definitively a student using his id
+      responses:
+        '200':
+          description: Deleted succesfully
+        '404':
+          description: Student not found
+        '500': 
+          description: server error
 components:
   schemas:
     Students:
@@ -64,5 +128,51 @@ components:
         stdRef:
           type: string
           example: 'STD22011'
+    Teachers:
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: 'Tokimahery'
+        lastName:
+          type: string
+          example: 'Ramarozaka'
+        courses:
+          $ref: '#/components/schemas/Courses'
+    UpdatedStudent:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: 'Rabe'
+        birthDate:
+          type: string
+          format: date-time
+          example: '2023-02-25 12:00:00'
+        stdRef:
+          type: string
+          example: 'STD22015'
+          
+    Courses:
+      type: array
+      properties:
+        courses:
+          type: string
+          enum:
+            - 'PROG1'
+            - 'WEB1'
+            - 'SYS1'
+            - 'MGT1'
+            - 'DONNEE1'
+            - 'API'
+            - 'PROG2'
+            - 'WEB2'
+            - 'SYS2'
+          example: ['PROG2','WEB1','DONNEE1']
+
+          
 
   
