@@ -140,7 +140,7 @@ paths:
               $ref: '#/components/schemas/Teachers'
       responses:
         '200':
-          description: updated succesfully
+          description: added succesfully
         '500':
           description: server error
 components:
